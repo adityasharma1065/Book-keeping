@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <link rel="stylesheet" href="/StyleSheets/invalidRoute.css" />
+  </head>
+  <body>
+    <div>
+      <img
+        src="https://media.geeksforgeeks.org/auth-dashboard-uploads/Illustration.svg"
+        alt=""
+      />
+
+      <p>
+        An invalid route has been requested, <br />
+        please return to the Home page. <br />
+      </p>
+      <button id="backToHome"><h3>Home Page</h3></button>
+    </div>
+    <script>
+      document
+        .querySelector("#backToHome")
+        .addEventListener("click", function () {
+          window.location.href = "/profile";
+        });
+    </script>
+  </body>
+</html>
+
+<style>
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: "#dadada";
+  /* background-image: url(https://as1.ftcdn.net/v2/jpg/05/49/29/70/1000_F_549297047_fxiIUIxD1AM6Iaw3GjQQ9ZBRrHJQm21q.jpg); */
+  background-position: center;
+  background-size: cover;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: black;
+  padding: 4vw;
+  /* box-shadow: 5px 5px 10px; */
+  border-radius: 20px;
+  gap: 1vw;
+}
+
+img {
+  height: 200px;
+}
+
+p {
+    padding-top: 20px;
+  color: rgba(255, 255, 255, 0.648);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+button {
+  margin-top: 2vw;
+  padding: 13px 20px;
+  border-radius: 13px;
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  background: rgb(83, 82, 82);
+  color: white;
+}
+button h3{
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+</style>
