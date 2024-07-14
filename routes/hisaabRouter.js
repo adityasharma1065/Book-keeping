@@ -13,7 +13,7 @@ router.get("/edit/:id",isLoggedin,editpageController)
 
 router.post("/create",isLoggedin,createHisaabController)
 router.post("/:id/verify",passcodeController)
-router.post("/edit/:id",editHisaabController)
+router.post("/edit/:id",isLoggedin,editHisaabController)
 
 
 module.exports=router;

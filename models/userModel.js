@@ -7,11 +7,11 @@ var userSchema=mongoose.Schema({
         unique:true,
         required:true,
         trim:true,
-        minLength:5,
-        maxLength:20
+        minlength: [4, 'Minimum length can be 4 characters'], // Custom error message for minlength
+        maxlength: [20, 'Maximum length can be 20 characters'] 
     },
     name:{
-        type:String,
+        type:String, 
         trim:true,
         required:true,
 
@@ -25,7 +25,7 @@ var userSchema=mongoose.Schema({
     password:{
         type:String,
         required:true,
-        minLength:6,
+        // minLength:6,
     },
     hisaabID:[{
         type:mongoose.Schema.Types.ObjectId,

@@ -26,15 +26,22 @@
             </div>
         </div>
         <div class="text-gray-500 mb-4">Created on <%=hisaab.createdAt.getDate()%>-<%=hisaab.createdAt.getMonth()+1%>-<%=hisaab.createdAt.getFullYear()%></div>
-        <h2 class="text-xl font-semibold mb-2"><%=hisaab.title%></h2>
-        <p class="text-gray-700 w-2/3"><%=hisaab.description%></p>
+        <h2 id="datatocopy1" class="text-xl font-semibold mb-2"><%=hisaab.title%></h2>
+        <p id="datatocopy2" class="text-gray-700 w-2/3"><%=hisaab.description%></p>
     </div>
 
 
     <script>
         var timer;
         const sharebtn = document.querySelector(".sharebtn");
+        
+
+
         sharebtn.addEventListener("click", function (e) {
+
+            var urlToCopy = window.location.href;
+            navigator.clipboard.writeText(urlToCopy)
+
             clearTimeout(timer);
 
             document.querySelector(".copieddiv")
@@ -48,3 +55,5 @@
     </script>
 
     <%- include('./partials/footer.ejs') %>
+
+    

@@ -32,10 +32,24 @@ module.exports.createHisaabController=async (req,res)=>{
 }
 
 module.exports.hisaabViewController=async (req,res)=>{
-     hisaabModel.findOne({_id:req.params.id})
+    var errmsg=req.flash("error")
+
+     var user=await userModel.findOne({email:req.user.email})
+     await hisaabModel.findOne({_id:req.params.id})
     .then((hisaab)=>{
-    
-        res.render("hisaab",{hisaab})
+        if(hisaab.sharable){
+
+            res.render("hisaab",{hisaab})
+        }
+        else{
+            if(user.hisaabID.includes(hisaab.id)){
+                res.render("hisaab",{hisaab,errmsg})
+            }
+            else{
+                req.flash("error","The record you are trying to access is not sharable")
+                res.redirect(`/profile`)
+            }
+        }
     })
 
     
@@ -89,19 +103,34 @@ module.exports.deleteController=async(req,res)=>{
 
 module.exports.editpageController=async(req,res)=>{
     var hisaab=await hisaabModel.findOne({_id:req.params.id})
+    var user =await userModel.findOne({email:req.user.email})
+    if(user.hisaabID.includes(hisaab.id)&&hisaab.editpermission){
     res.render("edit",{hisaab})
+    }
+    else if(!user.hisaabID.includes(hisaab.id)){
+        req.flash("error","You can't edit this record")
+        res.redirect(`/profile`)
+    }
+    else{
+        req.flash("error","Record can't be edited")
+        res.redirect(`/hisaab/view/${hisaab._id}`)
+    }
 }
 
 module.exports.editHisaabController=async(req,res)=>{
     var hisaab=await hisaabModel.findOne({_id:req.params.id})
+    
+    
 
-    hisaab.description = req.body.description;
-    hisaab.title = req.body.title;
-    hisaab.encrypted = req.body.encrypted == "on"; 
-    hisaab.sharable = req.body.sharable == "on";
-    hisaab.passcode = req.body.passcode;
-    hisaab.editpermission = req.body.editpermission == "on";
-    await hisaab.save();
-    res.redirect(`/hisaab/view/${hisaab._id}`)
+        hisaab.description = req.body.description;
+        hisaab.title = req.body.title;
+        hisaab.encrypted = req.body.encrypted == "on"; 
+        hisaab.sharable = req.body.sharable == "on";
+        hisaab.passcode = req.body.passcode;
+        hisaab.editpermission = req.body.editpermission == "on";
+        await hisaab.save();
+        res.redirect(`/hisaab/view/${hisaab._id}`)
+    
+
 
 }
