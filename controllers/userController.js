@@ -89,7 +89,7 @@ module.exports.loginController=async (req,res)=>{
          
     })}
     catch(err){
-        req.flash("error",err)
+        req.flash("error","Invalid Credentials")
         res.redirect("/")
     }
 
