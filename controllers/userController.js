@@ -66,6 +66,7 @@ module.exports.registerUserController = async (req, res) => {
             user = await userModel.create({
                 username, name, email, password: hash
             });
+            
         } catch (validationError) {
             if (validationError.name === 'ValidationError') {
                 const messages = Object.values(validationError.errors).map(val => val.message);
