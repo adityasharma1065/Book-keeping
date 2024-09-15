@@ -5,10 +5,10 @@ var userSchema=mongoose.Schema({
     username:{
         type:String,
         unique:true,
-        required:true,
+        // required:true,
         trim:true,
         minlength: [4, 'Minimum length can be 4 characters'], // Custom error message for minlength
-        maxlength: [20, 'Maximum length can be 20 characters'] 
+        maxlength: [30, 'Maximum length can be 30 characters'] 
     },
     name:{
         type:String, 
@@ -24,7 +24,7 @@ var userSchema=mongoose.Schema({
     },
     password:{
         type:String,
-        required:true,
+        // required:true,
         // minLength:6,
     },
     hisaabID:[{
@@ -32,5 +32,14 @@ var userSchema=mongoose.Schema({
         ref:"hisaab"
     }]
 })
+
+userSchema.pre('save', function(next) {
+    try {
+        // Perform validation or other pre-save operations here
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports=mongoose.model("user",userSchema)

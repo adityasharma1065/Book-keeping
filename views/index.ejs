@@ -7,9 +7,14 @@
                     placeholder="Email or Username" name="email">
                 <input class="block px-3 py-2 border-[1px] border-zinc-100 rounded-md" type="password"
                     placeholder="password" name="password">
-                <input class="block px-4 py-2 bg-blue-500 rounded-md text-white" type="submit" value="Login">
+                <input class=" px-4 py-2 bg-blue-500 rounded-md text-white" type="submit" value="Login">
             </form>
-            <a class="mt-5 inline-block text-blue-500" href="/register">Don't have an account ?</a>
+            <a class="mt-5 block text-blue-500" href="/register">Don't have an account ? register!</a>
+            <h6 class="mt-2 inline-block text-zinc-500 mb-2 ml-[100px]">or</h6>
+            <a id="Gauth " href="/auth/google" class="flex items-center justify-center gap-2 px-2 py-2 border-[1px] border-zinc-100 rounded-md ">
+                <i class="ri-google-fill text-xl"></i>
+                <h4 class=" text-zinc-500">Continue with Google</h4>
+            </a>
         </div>
     </div>
     <%- include('./partials/footer.ejs') %>

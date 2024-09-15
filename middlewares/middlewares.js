@@ -6,8 +6,10 @@ module.exports.isLoggedin=(req,res,next)=>{
     
     try{if(req.cookies.token){jwt.verify(req.cookies.token,process.env.SEC_KEY,async (err,decoded)=>{
           
-          var user=await userModel.findOne({email:decoded.email}).select("-password");
+          var user=await userModel.findOne({email:decoded.email});
           req.user=user
+        //   console.log(req.user);
+          
           next();
     })}
     else{

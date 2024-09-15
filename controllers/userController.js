@@ -98,6 +98,11 @@ module.exports.loginController=async (req,res)=>{
     try{let{email,password}=req.body
     var user=await userModel.findOne({email})
 
+    if (!user) {
+        req.flash("error", "Invalid Credentials");
+        return res.redirect("/");
+    }
+
     bcrypt.compare(password,user.password,(err,result)=>{
         if(!result){
             req.flash("error","Invalid Credentials")
