@@ -19,15 +19,15 @@ module.exports.profilePageController=async (req,res)=>{
     const errmsg=req.flash("error")
 
     let byDate=Number(req.query.byDate)
-  
     let startDate=req.query.startDate
-     startDate= startDate? new Date(req.query.startDate):  new Date("1980-01-01") 
     let endDate=  req.query.endDate
-
+  
+    startDate= startDate? new Date(req.query.startDate):  new Date("1980-01-01") 
     endDate=endDate?new Date(endDate):new Date()
-    endDate=endDate.getTime()+24*60*60*1000
-    
     byDate = byDate? byDate:-1
+
+    endDate=endDate.getTime()+24*60*60*1000  //incrementing end date by 1 day
+    
     
 
     var user=await userModel.findOne({
